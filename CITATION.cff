@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "sit-gabyx"
+
+authors:
+  - family-names: sdsc
+    given-names: sit-team
+    orcid: "..."
+    affiliation: "SDSC - Swiss Data Science Center"
+date-released: 2026-48-15
+version: "0.0.1"
+doi: ""
+url: https://github.com/sdsc-ordes/sit-gabyx
+repository-code: https://github.com/sdsc-ordes/sit-gabyx
+keywords: []
+license: apache2

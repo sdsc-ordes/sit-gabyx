@@ -1,0 +1,28 @@
+{
+  self,
+  inputs,
+  lib,
+  ...
+}:
+{
+  perSystem =
+    {
+      self',
+      config,
+      ...
+    }:
+    let
+      args = config.allModuleArgs; # See https://flake.parts/module-arguments#obtaining-all-module-arguments
+      toolchains = config.toolchains;
+      language = "generic";
+    in
+    {
+      devShells.default = self.lib.shell.mkShell {
+        inherit (args) system;
+        modules = toolchains.general ++ toolchains.${language};
+      };
+
+      # The CI shell is the same as the default.
+      devShells.ci = self'.devShells.default;
+    };
+}

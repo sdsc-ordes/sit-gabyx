@@ -1,0 +1,18 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_src_path: src/generic
+project_affiliation: SDSC - Swiss Data Science Center
+project_authors:
+-   email: infrastructure-team@datascience.ch
+    first_name: sit-team
+    last_name: sdsc
+project_description: A farewell tribute to the one who made our builds reproducible,
+    and our lives a little more declarative.
+project_hosts:
+-   host: github.com
+    organization: swissdatasciencecenter
+    repo: sit-gabyx
+project_language: generic
+project_license: apache2
+project_name: sit-gabyx
+project_url: https://github.com/sdsc-ordes/sit-gabyx
+project_version: 0.0.1
