@@ -42,6 +42,10 @@
         ] ''{ figlet "Gabyx"; cat "$MESSAGE"; } | lolcat'';
 
         markdown = mkStyle [ pkgs.glow ] ''glow "$MESSAGE"'';
+
+        dragon = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
+          fmt -w 40 "$MESSAGE" | cowsay -n -f dragon
+        '';
       };
     };
 }
