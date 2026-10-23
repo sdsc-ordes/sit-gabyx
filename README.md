@@ -22,7 +22,14 @@
 nix run ".#messages"                 # Show all messages.
 nix run ".#message-common"           # Show a single message.
 nix run ".#gabyx-future"             # Show the default future.
+```
 
+Or with [`just`](https://github.com/casey/just):
+
+```bash
+just run                             # Show all messages.
+just run message-common              # Show a single message.
+just run gabyx-future                # Show the default future.
 ```
 
 ## Development
@@ -31,7 +38,8 @@ nix run ".#gabyx-future"             # Show the default future.
 
 Add your message to `src/messages/entries/<your-name>.parts.nix`. Pick a `style`
 from [`src/messages/styles.parts.nix`](src/messages/styles.parts.nix) (`plain`,
-`cowsay`, `rainbow`, `markdown`) or add a new one.
+`cowsay`, `rainbow`, `markdown`, `dragon`, `crab`) or add a new one. Custom
+cow files live in [`src/messages/cows/`](src/messages/cows).
 
 ### Shaping the Future
 
