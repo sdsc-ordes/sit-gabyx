@@ -43,7 +43,7 @@ build *args:
 test *args:
     echo "TODO: Not implemented"
 
-# Run an executable.
+# Run a message.
 [group('general')]
-run *args:
-    echo "TODO: Not implemented"
+run attrname="messages" *args:
+    nix run --accept-flake-config "{{root_dir}}#{{attrname}}" -- "${@:2}"
