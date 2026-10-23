@@ -46,6 +46,12 @@
         dragon = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
           fmt -w 40 "$MESSAGE" | cowsay -n -f dragon
         '';
+
+        crab = mkStyle [
+          pkgs.coreutils
+          pkgs.cowsay
+          pkgs.lolcat
+        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/crab.cow} | lolcat -F 0.05 -S 145 '';
       };
     };
 }
