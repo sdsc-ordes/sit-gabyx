@@ -58,6 +58,12 @@
       	  pkgs.cowsay
       	  pkgs.lolcat
       	] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/nix.cow} | lolcat -F 0.02 -S 199 '';
+
+        kitty = mkStyle [
+          pkgs.coreutils
+          pkgs.cowsay
+          pkgs.lolcat
+        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/kitty.cow} | lolcat'';
       };
     };
 }
