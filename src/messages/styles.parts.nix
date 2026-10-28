@@ -47,8 +47,8 @@
           fmt -w 40 "$MESSAGE" | cowsay -n -f dragon
         '';
 
-        whale = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
-          fmt -w 40 "$MESSAGE" | cowsay -n -f whale
+        turtle = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
+          fmt -w 40 "$MESSAGE" | cowsay -n -f turtle
         '';
 
         crab = mkStyle [
