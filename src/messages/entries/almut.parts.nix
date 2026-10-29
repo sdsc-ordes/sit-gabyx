@@ -7,7 +7,7 @@
     {
       messages.almut = {
         from = "Almut";
-        style = "rainbow";
+        style = "heart";
         text = ''
           Thanks you so much for all the things I learned from you.
           You definitely changed my view on programming, software and

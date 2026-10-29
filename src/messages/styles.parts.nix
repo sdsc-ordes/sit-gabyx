@@ -68,6 +68,13 @@
           pkgs.cowsay
           pkgs.lolcat
         ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/kitty.cow} | lolcat -f'';
+
+        heart = mkStyle [
+          pkgs.coreutils
+          pkgs.toilet
+          pkgs.lolcat
+        ] ''{ toilet --gay -f mono9 "nix <3"; cat "$MESSAGE" | fmt -w 40 | lolcat -f; }'';
+
       };
     };
 }
