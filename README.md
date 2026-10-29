@@ -21,7 +21,6 @@
 ```bash
 nix run ".#messages"                 # Show all messages.
 nix run ".#message-common"           # Show a single message.
-nix run ".#gabyx-future"             # Show the default future.
 ```
 
 Or with [`just`](https://github.com/casey/just):
@@ -29,7 +28,12 @@ Or with [`just`](https://github.com/casey/just):
 ```bash
 just run                             # Show all messages.
 just run message-common              # Show a single message.
-just run gabyx-future                # Show the default future.
+```
+
+If you want to read along, try:
+
+```bash
+just read
 ```
 
 ## Development
@@ -38,14 +42,8 @@ just run gabyx-future                # Show the default future.
 
 Add your message to `src/messages/entries/<your-name>.parts.nix`. Pick a `style`
 from [`src/messages/styles.parts.nix`](src/messages/styles.parts.nix) (`plain`,
-`cowsay`, `rainbow`, `markdown`, `dragon`, `crab`) or add a new one. Custom
-cow files live in [`src/messages/cows/`](src/messages/cows).
-
-### Shaping the Future
-
-`gabyx-future` is a flake-parts option. Set its attributes (see
-[`src/gabyx-future/module.nix`](src/gabyx-future/module.nix)) in
-[`src/gabyx-future/config.parts.nix`](src/gabyx-future/config.parts.nix).
+`cowsay`, `rainbow`, `markdown`, `dragon`, `crab`) or add a new one. Custom cow
+files live in [`src/messages/cows/`](src/messages/cows).
 
 ## Acknowledgement
 
