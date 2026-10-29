@@ -47,3 +47,8 @@ test *args:
 [group('general')]
 run attrname="messages" *args:
     nix run --accept-flake-config "{{root_dir}}#{{attrname}}" -- "${@:2}"
+
+# Run a message.
+[group('general')]
+read attrname="messages" *args:
+    nix run --accept-flake-config "{{root_dir}}#{{attrname}}" -- "${@:2}" | pv -qL 1000

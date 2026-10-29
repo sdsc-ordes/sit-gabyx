@@ -8,7 +8,10 @@
       # The shell modules (devenv) for a generic shell.
       toolchains.generic = [
         {
-          packages = [ pkgs.cowsay ];
+          packages = [
+            pkgs.cowsay
+            pkgs.pv
+          ];
         }
       ];
     };

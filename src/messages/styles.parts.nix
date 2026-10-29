@@ -39,7 +39,7 @@
           pkgs.coreutils
           pkgs.figlet
           pkgs.lolcat
-        ] ''{ figlet "Gabyx"; cat "$MESSAGE"; } | lolcat'';
+        ] ''{ figlet "Gabyx"; cat "$MESSAGE"; } | lolcat -f'';
 
         markdown = mkStyle [ pkgs.glow ] ''glow "$MESSAGE"'';
 
@@ -55,19 +55,19 @@
           pkgs.coreutils
           pkgs.cowsay
           pkgs.lolcat
-        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/crab.cow} | lolcat -F 0.05 -S 145 '';
+        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/crab.cow} | lolcat -f -F 0.05 -S 145 '';
 
-      	nixlogo = mkStyle [
-      	  pkgs.coreutils
-      	  pkgs.cowsay
-      	  pkgs.lolcat
-      	] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/nix.cow} | lolcat -F 0.02 -S 199 '';
+        nixlogo = mkStyle [
+          pkgs.coreutils
+          pkgs.cowsay
+          pkgs.lolcat
+        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/nix.cow} | lolcat -f -F 0.02 -S 199 '';
 
         kitty = mkStyle [
           pkgs.coreutils
           pkgs.cowsay
           pkgs.lolcat
-        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/kitty.cow} | lolcat'';
+        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/kitty.cow} | lolcat -f'';
       };
     };
 }
