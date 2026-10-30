@@ -39,7 +39,7 @@
           pkgs.coreutils
           pkgs.figlet
           pkgs.lolcat
-        ] ''{ figlet "Gabyx"; cat "$MESSAGE"; } | lolcat -f'';
+        ] ''{ figlet "Gabyx"; fmt -w 40 "$MESSAGE"; } | lolcat -f'';
 
         markdown = mkStyle [ pkgs.glow ] ''glow "$MESSAGE"'';
 
