@@ -1,33 +1,51 @@
 {
+  lib,
   ...
 }:
 {
   perSystem =
     { pkgs, ... }:
     let
+      msgWidth = 40;
+
       # Make text file in nix store from msg.
+      # The text is wrapped to `width` columns unless `wrap` is false.
       mkTextFile =
+        { wrap }:
         {
           name,
           from,
           text,
         }:
-        pkgs.writeText "${name}-message.txt" ''
-          ${text}
-          -- ${from}
-        '';
+        pkgs.runCommand "${name}-message.txt"
+          {
+            inherit text;
+            passAsFile = [ "text" ];
+          }
+          ''
+            {
+              ${if wrap then ''fmt -w ${toString msgWidth} "$textPath"'' else ''cat "$textPath"''}
+              echo
+              echo ${lib.escapeShellArg "-- ${from}"}
+            } > "$out"
+          '';
 
       # Generate executable from textfile
-      mkStyle =
+      mkStyleWith =
+        {
+          wrap ? true,
+        }:
         runtimeInputs: script: args:
         pkgs.writeShellApplication {
           name = "message-${args.name}";
           inherit runtimeInputs;
           text = ''
-            MESSAGE="${mkTextFile args}"
+            MESSAGE="${mkTextFile { inherit wrap; } args}"
             ${script}
           '';
         };
+
+      mkStyle = mkStyleWith { };
     in
     {
       messageStyles = {
@@ -39,41 +57,34 @@
           pkgs.coreutils
           pkgs.figlet
           pkgs.lolcat
-        ] ''{ figlet "Gabyx"; fmt -w 40 "$MESSAGE"; } | lolcat -f'';
+        ] ''{ figlet "Gabyx"; cat "$MESSAGE"; } | lolcat -f'';
 
-        markdown = mkStyle [ pkgs.glow ] ''glow "$MESSAGE"'';
+        # Glow does its own wrapping and `fmt` would break markdown syntax.
+        markdown = mkStyleWith { wrap = false; } [ pkgs.glow ] ''glow "$MESSAGE"'';
 
-        dragon = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
-          fmt -w 40 "$MESSAGE" | cowsay -n -f dragon
-        '';
+        dragon = mkStyle [ pkgs.cowsay ] ''cowsay -n -f dragon < "$MESSAGE"'';
 
-        turtle = mkStyle [ pkgs.coreutils pkgs.cowsay ] ''
-          fmt -w 40 "$MESSAGE" | cowsay -n -f turtle
-        '';
+        turtle = mkStyle [ pkgs.cowsay ] ''cowsay -n -f turtle < "$MESSAGE"'';
 
         crab = mkStyle [
-          pkgs.coreutils
           pkgs.cowsay
           pkgs.lolcat
-        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/crab.cow} | lolcat -f -F 0.05 -S 145 '';
+        ] ''cowsay -n -f ${./cows/crab.cow} < "$MESSAGE" | lolcat -f -F 0.05 -S 145'';
 
         nixlogo = mkStyle [
-          pkgs.coreutils
           pkgs.cowsay
           pkgs.lolcat
-        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/nix.cow} | lolcat -f -F 0.02 -S 199 '';
+        ] ''cowsay -n -f ${./cows/nix.cow} < "$MESSAGE" | lolcat -f -F 0.02 -S 199'';
 
         kitty = mkStyle [
-          pkgs.coreutils
           pkgs.cowsay
           pkgs.lolcat
-        ] ''fmt -w 40 "$MESSAGE" | cowsay -n -f ${./cows/kitty.cow} | lolcat -f'';
+        ] ''cowsay -n -f ${./cows/kitty.cow} < "$MESSAGE" | lolcat -f'';
 
         heart = mkStyle [
-          pkgs.coreutils
           pkgs.toilet
           pkgs.lolcat
-        ] ''{ toilet --gay -f mono9 "nix <3"; cat "$MESSAGE" | fmt -w 40 | lolcat -f; }'';
+        ] ''{ toilet --gay -f mono9 "nix <3"; lolcat -f "$MESSAGE"; }'';
 
       };
     };
