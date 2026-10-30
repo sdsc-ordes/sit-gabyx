@@ -45,8 +45,14 @@ test *args:
 
 # Run a message.
 [group('general')]
-run attrname="messages" *args:
+debug attrname="messages" *args:
     nix run --accept-flake-config "{{root_dir}}#{{attrname}}" -- "${@:2}"
+
+# Run a message.
+[group('general')]
+run attrname="messages" *args:
+    just read {{attrname}} {{args}}
+
 
 # Run a message.
 [group('general')]
