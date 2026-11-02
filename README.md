@@ -19,21 +19,13 @@
 ## Usage
 
 ```bash
-nix run ".#messages"                 # Show all messages.
-nix run ".#message-common"           # Show a single message.
+just read                             # Read all messages.
 ```
 
-Or with [`just`](https://github.com/casey/just):
+To read a specific message, run `just read message-${name}`:
 
 ```bash
-just run                             # Show all messages.
-just run message-common              # Show a single message.
-```
-
-If you want to read along, try:
-
-```bash
-just read
+just read message-common              # Read only the 'common' message.
 ```
 
 ## Development
@@ -44,6 +36,20 @@ Add your message to `src/messages/entries/<your-name>.parts.nix`. Pick a `style`
 from [`src/messages/styles.parts.nix`](src/messages/styles.parts.nix) (`plain`,
 `cowsay`, `rainbow`, `markdown`, `dragon`, `crab`) or add a new one. Custom cow
 files live in [`src/messages/cows/`](src/messages/cows).
+
+To display the messages:
+
+```bash
+nix run ".#messages"                 # Show all messages.
+nix run ".#message-common"           # Show a single message.
+```
+
+Or with [`just`](https://github.com/casey/just):
+
+```bash
+just debug                             # Show all messages.
+just debug message-common              # Show a single message.
+```
 
 ## Acknowledgement
 

@@ -2,13 +2,14 @@
 _src_path: src/generic
 project_affiliation: SDSC - Swiss Data Science Center
 project_authors:
--   email: infrastructure-team@datascience.ch
+  - email: infrastructure-team@datascience.ch
     first_name: sit-team
     last_name: sdsc
-project_description: A farewell tribute to the one who made our builds reproducible,
-    and our lives a little more declarative.
+project_description:
+  A farewell tribute to the one who made our builds reproducible,
+  and our lives a little more declarative.
 project_hosts:
--   host: github.com
+  - host: github.com
     organization: swissdatasciencecenter
     repo: sit-gabyx
 project_language: generic

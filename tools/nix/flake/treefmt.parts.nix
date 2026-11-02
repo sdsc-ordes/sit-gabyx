@@ -37,8 +37,8 @@
 
         # Rust
         programs.rustfmt = {
-            enable = false;
-            package = self'.legacyPackages.rust.shell.toolchain.availableComponents.rustfmt;
+          enable = false;
+          package = self'.legacyPackages.rust.shell.toolchain.availableComponents.rustfmt;
         };
 
         # Go
@@ -59,7 +59,6 @@
             "${../../configs/prettier/prettierrc.yaml}"
           ];
         };
-
 
         # Shellscripts (which we should not have!)
         programs.shfmt = {
