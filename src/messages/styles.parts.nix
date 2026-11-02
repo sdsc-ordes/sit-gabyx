@@ -86,6 +86,11 @@
           pkgs.lolcat
         ] ''{ toilet --gay -f mono9 "nix <3"; lolcat -f "$MESSAGE"; }'';
 
+        shrek = mkStyle [
+          pkgs.cowsay
+          pkgs.lolcat
+        ] ''cowsay -n -f ${./cows/shrek.cow} < "$MESSAGE" | lolcat -f'';
+
       };
     };
 }
